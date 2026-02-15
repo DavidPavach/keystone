@@ -1,0 +1,56 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: ["class"],
+  content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
+  theme: {
+    extend: {
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1400px",
+      },
+      colors: {
+        primary: "#D56F3E",
+        goldenYellow: "#C97A1E",
+        primaryYellow: "#FFE6D9",
+        blueBlack: "#060B10",
+        black: "#000000",
+        lightBlack: "#16110E",
+        accent: "#FF7A2F",
+        neutral: {
+          50: "#F9FAFB",
+          100: "#F3F4F6",
+          200: "#E5E7EB",
+          500: "#6B7280",
+          600: "#4B5563",
+        },
+      },
+      boxShadow: {
+        "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+      },
+      backgroundImage: {
+        "brand-gradient": "linear-gradient(180deg, #FAF9F6 0%, #F3D8CB 55%, #D56F3E 100%)",
+      },
+      keyframes: {
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+        shake: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '25%': { transform: 'translateX(-3px)' },
+          '50%': { transform: 'translateX(3px)' },
+          '75%': { transform: 'translateX(-3px)' },
+        },
+      },
+      animation: {
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+        shake: 'shake 2.0s ease-in-out infinite',
+        shakeSlow: 'shake 0.5s ease-in-out infinite alternate',
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+};
