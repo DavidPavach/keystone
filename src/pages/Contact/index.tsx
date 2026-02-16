@@ -35,7 +35,7 @@ const Index = () => {
         {
             question: "How do I report suspicious activity?",
             answer:
-                "If you notice any suspicious activity on your account, contact us immediately at email support@keystonenationalbank.com. We'll investigate and take appropriate action.",
+                "If you notice any suspicious activity on your account, contact us immediately at email support@keystonenationalvault.com. We'll investigate and take appropriate action.",
         },
     ]
 
@@ -44,7 +44,7 @@ const Index = () => {
             icon: Mail,
             title: "Email Support",
             description: "Send us your questions",
-            details: "support@keystonenationalbank.com",
+            details: "support@keystonenationalvault.com",
             color: "bg-accent",
         },
         {

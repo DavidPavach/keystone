@@ -130,7 +130,7 @@ const Index = () => {
                             If you have questions about this Privacy Policy or our privacy practices, please contact us:
                         </p>
                         <div className="space-y-2 text-neutral-600">
-                            <p><strong>Email:</strong> privacy@keystonenationalbank.com</p>
+                            <p><strong>Email:</strong> privacy@keystonenationalvault.com</p>
                             <p><strong>Address:</strong> 33 Cortlandt Aly New York, NY 10013, United States</p>
                         </div>
                     </section>

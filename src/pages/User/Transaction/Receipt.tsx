@@ -123,7 +123,7 @@ export default function ReceiptPage({ transaction, className = "" }: ReceiptPage
         if (navigator.share) {
             navigator.share({
                 title: "Transaction Receipt",
-                text: "Keystone Bank Transaction Receipt",
+                text: "Keystone Transaction Receipt",
                 url: window.location.href,
             })
         } else {
@@ -363,7 +363,7 @@ export default function ReceiptPage({ transaction, className = "" }: ReceiptPage
                                     This receipt is digitally secured and verified by Keystone Bank. Keep this receipt for your
                                     records and contact us immediately if you notice any discrepancies.
                                 </p>
-                                <p className="mt-3 text-slate-500 text-xs">Customer Service: support@keystonenationalbank.com | Available 24/7</p>
+                                <p className="mt-3 text-slate-500 text-xs">Customer Service: support@keystonenationalvault.com | Available 24/7</p>
                             </CardContent>
                         </Card>
                     </motion.div>
