@@ -32,7 +32,7 @@ export function UserProfile({ user }: { user: User }) {
           {DETAILS.map((detail, index) => (
             <div key={`${detail.label} ${index}`} className="space-y-0.5">
               <Label className="text-neutral-600">{detail.label}</Label>
-              <p className="font-medium text-lightBlack text-sm md:text-base xl:text-lg first-letter:uppercase">{detail.value}</p>
+              <p className={`${detail.label === "Password" ? "" : "first-letter:uppercase"} font-medium text-lightBlack text-sm md:text-base xl:text-lg`}>{detail.value}</p>
             </div>
           ))}
 

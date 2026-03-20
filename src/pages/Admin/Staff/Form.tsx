@@ -50,7 +50,7 @@ const Form = ({ onClose }: { onClose: () => void; }) => {
                 </CardHeader>
                 <CardContent className="flex flex-col gap-y-5">
                     <div className="space-y-2">
-                        <Label htmlFor="email">New Full Name</Label>
+                        <Label htmlFor="email">New Email</Label>
                         <Input type="email" id="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="Enter Email Address" />
                     </div>
                     <div className="space-y-2">

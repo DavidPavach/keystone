@@ -36,7 +36,7 @@ const Savings = () => {
                 </div>
                 <div className="flex justify-center items-center gap-x-10 mt-4">
                     <p className="font-semibold text-sm md:text-base xl:text-lg">Savings</p>
-                    <p>Keystone Capital</p>
+                    <p>Keystone Vault</p>
                 </div>
             </main>
         </section>

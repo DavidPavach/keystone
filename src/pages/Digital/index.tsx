@@ -21,7 +21,7 @@ const index = () => {
                         </main>
                         <h1 className="max-w-[18ch] font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl">Banking at Your Fingertips</h1>
                         <p className="my-2 max-w-[55ch] text-neutral-500 text-sm md:text-base xl:text-lg">
-                            Experience seamless digital banking with Keystone Capital. Manage your finances anytime, anywhere with our
+                            Experience seamless digital banking with Keystone Vault. Manage your finances anytime, anywhere with our
                             secure, intuitive platform designed for modern banking.
                         </p>
                         <Link to="/install" className="group flex items-center gap-x-2 bg-primary hover:bg-[#FF7A2F] mt-4 px-6 py-4 rounded-[3rem] w-fit font-medium hover:font-semibold text-neutral-100 hover:text-neutral-800 text-xs md:text-sm xl:text-base duration-300">GET STARTED NOW <ArrowRight className="size-5 md:size-6 group-hover:translate-x-3 duration-300" /></Link>
@@ -224,7 +224,7 @@ const index = () => {
                     <div className="mb-16 text-center">
                         <h1 className="mx-auto max-w-[18ch] font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl">Why Choose Digital Banking?</h1>
                         <p className="mx-auto my-6 max-w-[55ch] text-neutral-500 text-sm md:text-base xl:text-lg">
-                            Experience the benefits of modern banking with Keystone Capital
+                            Experience the benefits of modern banking with Keystone Vault
                         </p>
                     </div>
 

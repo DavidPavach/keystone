@@ -51,7 +51,7 @@ const Form = () => {
                         <div className="flex justify-center items-center bg-[#D56F3E] mx-auto mb-4 rounded-full size-14 md:size-16 xl:size-20">
                             <CreditCard className="size-7 md:size-8 xl:size-10 text-white" />
                         </div>
-                        <CardTitle className="mb-2 font-bold text-slate-900 text-lg md:text-xl xl:text-2xl">Get Your Keystone Capital Card</CardTitle>
+                        <CardTitle className="mb-2 font-bold text-slate-900 text-lg md:text-xl xl:text-2xl">Get Your Keystone Vault Card</CardTitle>
                         <p className="text-slate-600">
                             Apply for your first Keystone Bank card and enjoy secure, convenient banking.
                         </p>

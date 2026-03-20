@@ -100,7 +100,7 @@ export function BankCard({ cardType = "credit", cardNumber, holderName, expiryDa
                 <div className="flex justify-between items-start">
                     <div>
                         <motion.h3 className="font-bold text-base md:text-lg xl:text-xl tracking-wider" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
-                            Keystone Capital
+                            Keystone Vault
                         </motion.h3>
                         <motion.p className="opacity-90 font-medium text-[11px] md:text-xs xl:text-sm" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
                             {cardType.toUpperCase()} CARD
