@@ -403,7 +403,7 @@ declare type EditDepositRequest = {
     status?: "successful" | "failed" | "pending",
 }
 
-//Declare Deposit Request
+//Deposit Request
 declare type DepositRequest = {
     _id: string
     amount: number
@@ -420,4 +420,13 @@ declare type DepositRequest = {
         profilePicture: string
         _id: string
     }
+}
+
+//Generate Transaction
+declare type GenerateInput = {
+    userId: string;
+    totalInflow: number;
+    totalOutflow: number;
+    startDate: string;
+    endDate: string;
 }

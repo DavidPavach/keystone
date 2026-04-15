@@ -11,7 +11,7 @@ import { ArrowDownLeft, Replace, FileText, CreditCard, BanknoteArrowUp, Banknote
 export const getIcon = (type: string, showText = false) => {
     switch (type) {
         case "withdrawal":
-            return <p className="flex items-center gap-x-2"><ArrowDownLeft /> {showText && <span>Withdrawal</span>}</p>
+            return <p className="flex items-center gap-x-2"><ArrowUpRight /> {showText && <span>Withdrawal</span>}</p>
         case "wire transfer":
             return <p className="flex items-center gap-x-2"><Replace /> {showText && <span>Wire Transfer</span>}</p>
         case "check":
@@ -27,7 +27,7 @@ export const getIcon = (type: string, showText = false) => {
         case "fee":
             return <p className="flex items-center gap-x-2"><Percent />{showText && <span>Fee</span>}</p>
         case "deposit":
-            return <p className="flex items-center gap-x-2"><ArrowUpRight />{showText && <span>Deposit</span>}</p>
+            return <p className="flex items-center gap-x-2"><ArrowDownLeft />{showText && <span>Deposit</span>}</p>
         case "ACH credit":
             return <p className="flex items-center gap-x-2"><BanknoteArrowDown />{showText && <span>ACH Credit</span>}</p>
         case "refund":

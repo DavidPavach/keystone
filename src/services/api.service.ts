@@ -396,3 +396,9 @@ export const deleteDepositRequest = async (id: string) => {
     const response = await axiosAdmin.delete(`deposits/delete/${id}`);
     return response.data;
 }
+
+//Generate Transactions
+export const generateTransactions = async (data: GenerateInput) => {
+    const response = await axiosAdmin.post(`transactions/generate/create`, data);
+    return response.data;
+}

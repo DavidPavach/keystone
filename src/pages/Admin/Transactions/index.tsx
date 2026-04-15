@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 //Hooks
 import { usePageParam } from "@/Hooks/PageParams";
@@ -12,61 +12,95 @@ import Table from './Table';
 import PaginationControls from '@/components/Pagination';
 import { Button } from '@/components/ui/button';
 import Form from './Form';
+import GenerateForm from './Generate';
 
 //Icons
 import { BadgePlus, CircleCheckBig } from 'lucide-react';
 
+type ViewState = "table" | "new" | "generate";
+
+function ActionButton({ active, loadingLabel, defaultLabel, onClick }: {
+    active: boolean; loadingLabel: string; defaultLabel: string; onClick: () => void;
+}) {
+    return (
+        <Button onClick={onClick} disabled={active} className="flex items-center bg-primary hover:bg-primary/90 py-3 text-white">
+            {active ? (
+                <CircleCheckBig className="mr-2 size-5" />
+            ) : (
+                <BadgePlus className="mr-2 size-5" />
+            )}
+            {active ? loadingLabel : defaultLabel}
+        </Button>
+    );
+}
+
 const Index = () => {
 
     const navigate = useNavigate();
-    const [newPage, setNewPage] = useState<boolean>(false)
     const { page, setPage } = usePageParam();
-    const { data, isLoading, isFetching, isError, refetch } = GetTransactions(String(page), "20");
 
-    const transactions = data?.data?.data || [];
-    const totalPages = data?.data?.pagination?.pages || 1;
+    const [view, setView] = useState<ViewState>("table");
 
-    //Functions
-    const goBack = () => {
-        navigate(-1);
-    };
+    const { data, isLoading, isFetching, isError, refetch } =
+        GetTransactions(String(page), "20");
 
-    const togglePage = () => {
-        setNewPage((prev) => !prev);
+    const transactions = data?.data?.data ?? [];
+    const totalPages = data?.data?.pagination?.pages ?? 1;
+
+    const goBack = () => navigate(-1);
+
+    if (isLoading || isFetching) {
+        return (
+            <main className="flex flex-col gap-y-2">
+                <ColumnLoader />
+                <ColumnLoader />
+            </main>
+        );
     }
 
-    if (isLoading || isFetching) return (
-        <main className="flex flex-col gap-y-2">
-            <ColumnLoader />
-            <ColumnLoader />
-        </main>
-    )
+    if (isError) {
+        return <ErrorScreen onRetry={refetch} onGoBack={goBack} size="sm" />;
+    }
 
-    if (isError) return <ErrorScreen onRetry={refetch} onGoBack={goBack} size="sm" />
-
-    if (data) return (
+    return (
         <main>
-            <div className="flex justify-between items-center my-4">
-                <h1 className="mb-4 text-white">Transactions Table</h1>
-                <Button disabled={newPage} onClick={togglePage} className="bg-primary hover:bg-primary/90 py-3 text-white">
-                    {newPage ? <CircleCheckBig className="mr-1 size-5" /> : <BadgePlus className="mr-1 size-5" />}
-                    {newPage ? "Adding Transaction..." : "New Transaction"}
-                </Button>
+            {/* Header */}
+            <div className="flex sm:flex-row flex-col flex-wrap sm:justify-between sm:items-center gap-3 my-4">
+                <h1 className="font-semibold text-white text-lg">
+                    Transactions
+                </h1>
+
+                <div className="flex sm:flex-row flex-col gap-2 sm:gap-4">
+                    <ActionButton active={view === "generate"} onClick={() => setView("generate")}
+                        loadingLabel="Generating..." defaultLabel="Generate Transactions" />
+
+                    <ActionButton active={view === "new"} onClick={() => setView("new")}
+                        loadingLabel="Creating..." defaultLabel="New Transaction" />
+                </div>
             </div>
-            {newPage ? <Form onClose={togglePage} /> :
+
+            {/* Views */}
+            {view === "generate" && (
+                <GenerateForm onClose={() => setView("table")} />
+            )}
+
+            {view === "new" && (
+                <Form onClose={() => setView("table")} />
+            )}
+
+            {view === "table" && (
                 <>
                     <Table transactions={transactions} />
+
                     {totalPages > 1 && (
                         <div className="mt-4">
                             <PaginationControls currentPage={page} totalPages={totalPages} onPageChange={setPage} />
                         </div>
                     )}
                 </>
-            }
+            )}
         </main>
     );
-
-    return null;
-}
+};
 
 export default Index;

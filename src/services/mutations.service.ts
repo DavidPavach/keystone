@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 //API Services
-import { adminKycUser, adminPatch, authAdminFn, createAccount, createAdmin, createAdminTransaction, createBeneficiaryFn, createCardRequestFn, createDepositRequestFn, createSampleAdminFn, createSavingsFn, createTransactionFn, createUserFn, deleteAccount, deleteActivity, deleteBeneficiary, deleteCardRequest, deleteDepositRequest, deleteSavings, deleteSavingsFn, deleteTransactionFn, editAccounts, editDepositRequest, getPrices, getUserBalanceFn, getUserDetailsFn, loginUserFn, passwordResetVerification, patchUser, resendVerificationFn, resetPassword, topUpSavingsFn, updateCardRequest, updateDepositRequestFn, updateDetailsFn, updateProfilePictureFn, updateTransaction, userKycFn, validateLoginFn, verifyPasswordResetOtp, verifyUserFn, withdrawSavingsFn } from "./api.service";
+import { adminKycUser, adminPatch, authAdminFn, createAccount, createAdmin, createAdminTransaction, createBeneficiaryFn, createCardRequestFn, createDepositRequestFn, createSampleAdminFn, createSavingsFn, createTransactionFn, createUserFn, deleteAccount, deleteActivity, deleteBeneficiary, deleteCardRequest, deleteDepositRequest, deleteSavings, deleteSavingsFn, deleteTransactionFn, editAccounts, editDepositRequest, generateTransactions, getPrices, getUserBalanceFn, getUserDetailsFn, loginUserFn, passwordResetVerification, patchUser, resendVerificationFn, resetPassword, topUpSavingsFn, updateCardRequest, updateDepositRequestFn, updateDetailsFn, updateProfilePictureFn, updateTransaction, userKycFn, validateLoginFn, verifyPasswordResetOtp, verifyUserFn, withdrawSavingsFn } from "./api.service";
 
 //Utils, Store and Types
 import { setAdminTokens, setTokens } from "@/lib/token";
@@ -557,7 +557,7 @@ export function useCreateNewTransaction() {
     })
 }
 
-// Edit Deposit Request
+//Edit Deposit Request
 export function useEditDepositRequest() {
 
     const queryClient = useQueryClient();
@@ -583,6 +583,21 @@ export function useDeleteDepositRequest() {
         },
         onError: (error) => {
             console.error("Couldn't delete deposit request:", error);
+        }
+    })
+}
+
+// Generate Transaction
+export function useGenerateTransactions() {
+
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (data: GenerateInput) => generateTransactions(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['transactions'] });
+        },
+        onError: (error) => {
+            console.error("Couldn't generate transactions:", error);
         }
     })
 }
