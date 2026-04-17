@@ -90,7 +90,7 @@ const SavingsForm = ({ onClose }: { onClose: () => void; }) => {
         toast("Creating Savings Goal...", { isCloseBtn: true });
 
         const transformedData = {
-            ...formData, targetAmount: parseFloat(formData.targetAmount), savedAmount: parseFloat(formData.targetAmount),
+            ...formData, targetAmount: parseFloat(formData.targetAmount), savedAmount: parseFloat(formData.savedAmount),
             startDate: new Date(formData.startDate).toISOString(),
             endDate: formData.endDate ? new Date(formData.endDate).toISOString() : undefined,
         }
