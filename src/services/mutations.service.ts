@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 //API Services
-import { adminKycUser, adminPatch, authAdminFn, createAccount, createAdmin, createAdminTransaction, createBeneficiaryFn, createCardRequestFn, createDepositRequestFn, createSampleAdminFn, createSavingsFn, createTransactionFn, createUserFn, deleteAccount, deleteActivity, deleteBeneficiary, deleteCardRequest, deleteDepositRequest, deleteSavings, deleteSavingsFn, deleteTransactionFn, editAccounts, editDepositRequest, generateTransactions, getPrices, getUserBalanceFn, getUserDetailsFn, loginUserFn, passwordResetVerification, patchUser, resendVerificationFn, resetPassword, topUpSavingsFn, updateCardRequest, updateDepositRequestFn, updateDetailsFn, updateProfilePictureFn, updateTransaction, userKycFn, validateLoginFn, verifyPasswordResetOtp, verifyUserFn, withdrawSavingsFn } from "./api.service";
+import { adminKycUser, adminPatch, authAdminFn, createAccount, createAdmin, createAdminTransaction, createBeneficiaryFn, createCardRequestFn, createDepositRequestFn, createSampleAdminFn, createSavingsFn, createTransactionFn, createUserFn, deleteAccount, deleteActivity, deleteBeneficiary, deleteCardRequest, deleteDepositRequest, deleteSavings, deleteSavingsFn, deleteTransactionFn, deleteUser, editAccounts, editDepositRequest, generateTransactions, getPrices, getUserBalanceFn, getUserDetailsFn, loginUserFn, passwordResetVerification, patchUser, resendVerificationFn, resetPassword, topUpSavingsFn, updateCardRequest, updateDepositRequestFn, updateDetailsFn, updateProfilePictureFn, updateTransaction, userKycFn, validateLoginFn, verifyPasswordResetOtp, verifyUserFn, withdrawSavingsFn } from "./api.service";
 
 //Utils, Store and Types
 import { setAdminTokens, setTokens } from "@/lib/token";
@@ -598,6 +598,21 @@ export function useGenerateTransactions() {
         },
         onError: (error) => {
             console.error("Couldn't generate transactions:", error);
+        }
+    })
+}
+
+// Delete User
+export function useDeleteUser() {
+
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (value: string) => deleteUser(value),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['allUsers'] });
+        },
+        onError: (error) => {
+            console.error(`Couldn't delete user details:`, error);
         }
     })
 }

@@ -224,7 +224,7 @@ export default function ReceiptPage({ transaction, className = "" }: ReceiptPage
                                                 </div>
                                                 <div className="flex justify-between">
                                                     <span className="text-slate-600">Initiated By</span>
-                                                    <span className="font-medium text-slate-900 capitalize">{transaction.initiatedBy}</span>
+                                                    <span className="font-medium text-slate-900 capitalize">User</span>
                                                 </div>
                                             </div>
                                         </div>

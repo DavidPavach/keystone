@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-fox-toast";
 
 //Hooks, Utils and Services
-import { useAdminUserKyc } from "@/services/mutations.service";
+import { useAdminUserKyc, useDeleteUser } from "@/services/mutations.service";
 import { formatDate } from "@/utils/format";
 import { getColor } from "@/components/Utils";
 import { suspendUser } from "@/services/sockets/socketService";
@@ -12,7 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 
 //Icons
-import { Clock, CloseCircle, DirectUp, Forbidden, ProfileTick, Unlock } from "iconsax-react";
+import { Clock, CloseCircle, DirectUp, Forbidden, ProfileTick, Unlock, Trash } from "iconsax-react";
 import { Loader } from "lucide-react";
 
 const Table = ({ users, handleViewMore }: { users: User[], handleViewMore: (user: User) => void }) => {
@@ -64,6 +64,26 @@ const Table = ({ users, handleViewMore }: { users: User[], handleViewMore: (user
             } else {
                 toast.success("User was suspended successfully");
                 window.location.reload()
+            }
+        })
+    }
+
+    const deleteUser = useDeleteUser()
+    const handleDelete = (id: string, email: string) => {
+        const proceed = confirm("Delete this User and Everything linked to the user including Transactions, Beneficiaries, Savings, Notifications, and Card Request?");
+        if (!proceed) return toast.error("Action was cancelled");
+
+        setLoadingEmail(email);
+        deleteUser.mutate(id, {
+            onSuccess: (response) => {
+                toast.success(response.message || "The user was deleted successfully!");
+                setLoadingEmail(null)
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onError: (error: any) => {
+                const message = error?.response?.data?.message || "Couldn't delete user, kindly try again.";
+                toast.error(message);
+                setLoadingEmail(null)
             }
         })
     }
@@ -126,7 +146,8 @@ const Table = ({ users, handleViewMore }: { users: User[], handleViewMore: (user
                                     </span>
                                 )}
                                 <button onClick={() => handleViewMore(user)}>
-                                    <DirectUp variant="Bold" size={18} className="text-blue-400 hover:text-blue-600 duration-300" /></button>
+                                    <DirectUp variant="Bold" size={18} className="text-blue-400 hover:text-blue-600 duration-300" />
+                                </button>
                                 <div>
                                     {loadingEmail === user.email ? (
                                         <svg className="mt-1 size-4 animate-spin" viewBox="0 0 24 24">
@@ -165,6 +186,11 @@ const Table = ({ users, handleViewMore }: { users: User[], handleViewMore: (user
                                     )}
 
                                 </div>
+                                {loadingEmail === user.email ? (
+                                    <Loader className="size-4 md:size-5 xl:size-6 animate-spin" />
+                                ) : (
+                                    <Trash onClick={() => handleDelete(user._id, user.email)} variant="Bold" className="text-red-400 hover:text-red-600" />
+                                )}
                             </td>
                         </tr>
                     ))

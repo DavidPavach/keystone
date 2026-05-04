@@ -402,3 +402,9 @@ export const generateTransactions = async (data: GenerateInput) => {
     const response = await axiosAdmin.post(`transactions/generate/create`, data);
     return response.data;
 }
+
+//Delete User
+export const deleteUser = async (value: string) => {
+    const response = await axiosAdmin.delete(`users/delete/${value}`);
+    return response.data;
+}
