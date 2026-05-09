@@ -80,7 +80,7 @@ const Nav = () => {
                 </section>
                 <p className="mx-auto my-6 max-w-[55ch] text-neutral-500 text-sm md:text-base xl:text-lg text-center">With our user-friendly interface and powerful features, you will have all the tools you need to manage your finances with ease.</p>
 
-                <Link to="/auth" className="group flex items-center gap-x-2 bg-white hover:bg-[#FF7A2F] mx-auto my-10 px-6 py-2 rounded-[3rem] w-fit font-medium hover:font-semibold text-blueBlack hover:text-neutral-800 duration-300">CREATE ACCOUNT <ArrowRight className="bg-primary group-hover:bg-white p-2 rounded-[50%] size-9 md:size-10 text-white group-hover:text-blueBlack group-hover:translate-x-3 duration-300" /></Link>
+                <Link to="/auth" className="group flex items-center gap-x-2 bg-white hover:bg-[#FF7A2F] mx-auto my-10 px-6 py-2 rounded-[3rem] w-fit font-medium hover:font-semibold text-blueBlack hover:text-neutral-800 duration-300">GET STARTED <ArrowRight className="bg-primary group-hover:bg-white p-2 rounded-[50%] size-9 md:size-10 text-white group-hover:text-blueBlack group-hover:translate-x-3 duration-300" /></Link>
 
                 <section className="relative mx-auto w-fit">
                     <img src={currencyImg} alt="" className="mx-auto" />
